@@ -1,0 +1,83 @@
+{
+  "best_model": "Gradient Boosting",
+  "metal": "Gold (Au)",
+  "process": "Cyanidation (NaCN)",
+  "features": [
+    "temperature_C",
+    "pH",
+    "reaction_time_hr",
+    "nacn_conc_gL",
+    "particle_size_um",
+    "dissolved_o2_mgL"
+  ],
+  "metrics": {
+    "R2": 0.9283,
+    "MAE": 1.9678,
+    "RMSE": 2.5103,
+    "CV_R2_mean": 0.8996,
+    "CV_R2_std": 0.0157
+  },
+  "all_metrics": {
+    "Random Forest": {
+      "R2": 0.873,
+      "MAE": 2.6031,
+      "RMSE": 3.341,
+      "CV_R2_mean": 0.8297,
+      "CV_R2_std": 0.0191
+    },
+    "Gradient Boosting": {
+      "R2": 0.9283,
+      "MAE": 1.9678,
+      "RMSE": 2.5103,
+      "CV_R2_mean": 0.8996,
+      "CV_R2_std": 0.0157
+    },
+    "Ridge Regression": {
+      "R2": 0.8584,
+      "MAE": 2.8277,
+      "RMSE": 3.5281,
+      "CV_R2_mean": 0.866,
+      "CV_R2_std": 0.0251
+    }
+  },
+  "importances": {
+    "temperature_C": 0.0444,
+    "pH": 0.0236,
+    "reaction_time_hr": 0.1076,
+    "nacn_conc_gL": 0.4071,
+    "particle_size_um": 0.2073,
+    "dissolved_o2_mgL": 0.2099
+  },
+  "data_stats": {
+    "temperature_C": {
+      "min": 15.2,
+      "max": 54.7,
+      "mean": 34.939
+    },
+    "pH": {
+      "min": 10.01,
+      "max": 12.5,
+      "mean": 11.205
+    },
+    "reaction_time_hr": {
+      "min": 2.2,
+      "max": 48.0,
+      "mean": 25.808
+    },
+    "nacn_conc_gL": {
+      "min": 0.116,
+      "max": 4.992,
+      "mean": 2.533
+    },
+    "particle_size_um": {
+      "min": 10.2,
+      "max": 149.4,
+      "mean": 79.979
+    },
+    "dissolved_o2_mgL": {
+      "min": 4.0,
+      "max": 7.99,
+      "mean": 6.02
+    }
+  }
+}
