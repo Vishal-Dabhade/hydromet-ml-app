@@ -50,6 +50,11 @@
 
   /* ── Layout ───────────────────────────────────────────── */
   .wrapper{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px}
+  @media(max-width:768px){
+  .wrapper{
+    padding:0 12px;
+  }
+}
 
   /* ── Header ───────────────────────────────────────────── */
   header{
@@ -83,13 +88,18 @@
   .badge.blue{background:rgba(0,150,255,.08);border-color:rgba(0,150,255,.25);color:var(--accent2)}
 
   /* ── Main grid ────────────────────────────────────────── */
+.main-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  padding:28px 0;
+}
+
+@media(max-width:768px){
   .main-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:24px;
-    padding:28px 0;
+    grid-template-columns:1fr;
   }
-  @media(max-width:820px){.main-grid{grid-template-columns:1fr}}
+}
 
   /* ── Card ─────────────────────────────────────────────── */
   .card{
@@ -163,6 +173,16 @@
   }
   .input-row input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none}
   .input-row input[type="number"]:focus{border-color:var(--accent)}
+  @media(max-width:768px){
+  .input-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .input-row input[type="number"]{
+    width:100%;
+  }
+}
 
   /* ── Predict button ───────────────────────────────────── */
   .btn-predict{
@@ -188,6 +208,12 @@
     animation:shimmer 1s infinite;
   }
   @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+  @media(max-width:768px){
+  .btn-predict{
+    font-size:0.8rem;
+    padding:12px;
+  }
+}
 
   /* ── Result display ───────────────────────────────────── */
   .result-zone{
@@ -235,7 +261,14 @@
     font-size:.8rem;color:var(--muted);
     font-family:var(--font-mono);
   }
+
+
   .conf-val{color:var(--text)}
+  @media(max-width:768px){
+  .result-value{
+    font-size:2.5rem;
+  }
+}
 
   /* ── Gauge chart ─────────────────────────────────────── */
   .gauge-wrap{display:flex;justify-content:center;margin-bottom:16px}
@@ -337,6 +370,15 @@
     transition:color .2s,border-color .2s;
   }
   .refresh-btn:hover{color:var(--accent);border-color:rgba(0,212,170,.3)}
+  @media(max-width:768px){
+  table{
+    font-size:0.7rem;
+  }
+
+  th, td{
+    padding:6px;
+  }
+}
 
   /* ── Optimiser hint ──────────────────────────────────── */
   .opt-hint{
