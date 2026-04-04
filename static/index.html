@@ -532,7 +532,7 @@
     <div class="card full-width">
       <div class="card-title">
         Prediction History
-        <button class="refresh-btn" onclick="loadHistory()">↻ Refresh</button>
+      <button class="refresh-btn" onclick="clearHistory()">🧹 Clear History</button>
       </div>
       <div class="history-wrap">
         <table>
@@ -762,14 +762,16 @@ function simulatePredict(p) {
 }
 
 // ── History ───────────────────────────────────────────────
-async function loadHistory() {
+async function loadHistory(noCache = false) {
   const tbody = document.getElementById('historyBody');
 
   let rows;
   const useLocal = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
   if (useLocal) {
     try {
-      const resp = await fetch(API + '/api/history?limit=20');
+      const resp = await fetch(API + '/api/history?limit=20', {
+  cache: noCache ? "no-store" : "default"
+});
       rows = await resp.json();
     } catch(e) {
       rows = JSON.parse(localStorage.getItem('hm_history') || '[]');
@@ -798,6 +800,19 @@ async function loadHistory() {
   }).join('');
 }
 
+
+async function clearHistory() {
+  if (confirm("Are you sure you want to clear history?")) {
+    try {
+      await fetch(API + '/api/clear-history', { method: 'DELETE' });
+    } catch(e) {
+      // also clear localStorage fallback
+    }
+    localStorage.removeItem('hm_history');
+    document.getElementById('historyBody').innerHTML =
+      '<tr><td colspan="8" class="empty-history">No predictions yet — run your first prediction!</td></tr>';
+  }
+}
 // ── Load model metadata ───────────────────────────────────
 async function loadModelInfo() {
   const useLocal = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');

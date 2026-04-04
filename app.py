@@ -147,6 +147,7 @@ def model_info():
     return jsonify(metadata)
 
 @app.route("/api/stats", methods=["GET"])
+
 def stats():
     with get_db() as conn:
         row = conn.execute("""
@@ -158,6 +159,13 @@ def stats():
         """).fetchone()
     return jsonify(dict(row))
 
+@app.route("/api/clear-history", methods=["DELETE"])
+def clear_history():
+    with get_db() as conn:
+        conn.execute("DELETE FROM predictions")
+        conn.commit()
+    return jsonify({"message": "History cleared"})
+
 @app.route("/")
 def index():
     return send_from_directory(STATIC_DIR, "index.html")
@@ -165,6 +173,8 @@ def index():
 @app.route("/<path:p>")
 def assets(p):
     return send_from_directory(STATIC_DIR, p)
+
+
 
 import os
 
